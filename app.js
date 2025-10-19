@@ -13,6 +13,29 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('budget_range').innerHTML = formOptions.budget_range.map(opt => `<option value="${opt}">${opt}</option>`).join('');
     document.getElementById('timeline').innerHTML = formOptions.timeline.map(opt => `<option value="${opt}">${opt}</option>`).join('');
 
+    // Process cards collapsible functionality
+    document.querySelectorAll('.process-header').forEach(header => {
+        header.addEventListener('click', function() {
+            const content = this.nextElementSibling;
+            const button = this.querySelector('.expand-btn');
+            const isActive = content.classList.contains('active');
+
+            // Close all other sections
+            document.querySelectorAll('.process-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.expand-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Toggle current section
+            if (!isActive) {
+                content.classList.add('active');
+                button.classList.add('active');
+            }
+        });
+    });
+
     // Smooth header background change on scroll
     let lastScrollTop = 0;
     const header = document.querySelector('.header');
