@@ -1,4 +1,19 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
+    // DOM Elements
+    const header = document.querySelector('.header');
+    const navMenu = document.querySelector('.nav-menu');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const form = document.getElementById('contactForm');
+    const processHeaders = document.querySelectorAll('.process-header');
+    const links = document.querySelectorAll('a[href^="#"]');
+    const cards = document.querySelectorAll('.service-card, .about-card, .process-card');
+    const heroTitle = document.querySelector('.hero-title');
+    const heroStats = document.querySelector('.hero-stats');
+
+    // Ensure hero elements are visible immediately
+    if (heroTitle) heroTitle.style.opacity = '1';
+    if (heroStats) heroStats.style.opacity = '1';
+
     // Form options in Spanish
     const formOptions = {
         company_size: ["10-50 empleados", "50-200 empleados", "200-500 empleados", "500+ empleados"],
@@ -13,177 +28,208 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('budget_range').innerHTML = formOptions.budget_range.map(opt => `<option value="${opt}">${opt}</option>`).join('');
     document.getElementById('timeline').innerHTML = formOptions.timeline.map(opt => `<option value="${opt}">${opt}</option>`).join('');
 
-    // Process cards collapsible functionality
-    document.querySelectorAll('.process-header').forEach(header => {
+    // Add data-aos attributes to elements for animations
+    const animatedElements = document.querySelectorAll('.service-card, .process-card, .stat, .hero-title, .hero-subtitle');
+    animatedElements.forEach(el => {
+        el.setAttribute('data-aos', 'fade-up');
+    });
+
+    // Header scroll effect with enhanced color transition
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > 50) {
+            header.classList.add('scrolled');
+            // Add gradient background effect
+            header.style.background = `rgba(10, 10, 15, ${Math.min(currentScroll / 500, 0.95)})`;
+        } else {
+            header.classList.remove('scrolled');
+            header.style.background = 'transparent';
+        }
+        lastScroll = currentScroll;
+    });
+
+    // Add intersection observer for fade-in animations
+    const fadeInObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                fadeInObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Observe elements that should fade in
+    document.querySelectorAll('.hero-title, .hero-subtitle, .hero-stats, .stat').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        fadeInObserver.observe(el);
+    });
+
+    // Stats counter animation
+    const stats = document.querySelectorAll('.stat-number');
+    const animateValue = (element, start, end, duration) => {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const value = Math.floor(progress * (end - start) + start);
+            element.textContent = value + '%';
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    };
+
+    // Initialize stats visibility
+    stats.forEach(stat => {
+        stat.style.opacity = '1';
+        stat.style.visibility = 'visible';
+    });
+
+    // Intersection Observer for stat animations
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = entry.target;
+                const finalValue = parseInt(target.textContent);
+                animateValue(target, 0, finalValue, 2000);
+                statsObserver.unobserve(target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    stats.forEach(stat => statsObserver.observe(stat));
+
+    // Process steps expansion with smooth animations
+    processHeaders.forEach(header => {
         header.addEventListener('click', function() {
             const content = this.nextElementSibling;
             const button = this.querySelector('.expand-btn');
             const isActive = content.classList.contains('active');
 
-            // Close all other sections
+            // Close all other sections with animation
             document.querySelectorAll('.process-content').forEach(content => {
+                content.style.maxHeight = '0px';
                 content.classList.remove('active');
             });
             document.querySelectorAll('.expand-btn').forEach(btn => {
                 btn.classList.remove('active');
+                btn.style.transform = 'rotate(0deg)';
             });
 
-            // Toggle current section
+            // Toggle current section with animation
             if (!isActive) {
                 content.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + 'px';
                 button.classList.add('active');
+                button.style.transform = 'rotate(45deg)';
             }
         });
     });
 
-    // Smooth header background change on scroll
-    let lastScrollTop = 0;
-    const header = document.querySelector('.header');
-    
-    function handleScroll() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        
-        lastScrollTop = scrollTop;
-    }
-
-    // Throttle scroll events
-    let ticking = false;
-    function requestTick() {
-        if (!ticking) {
-            requestAnimationFrame(handleScroll);
-            ticking = true;
-            setTimeout(() => { ticking = false; }, 16);
-        }
-    }
-
-    window.addEventListener('scroll', requestTick);
-
-    // Responsive mobile nav toggle
-    const navToggle = document.getElementById('navToggle');
-    const navMenu = document.getElementById('navMenu');
-    navToggle.addEventListener('click', function () {
-        navMenu.classList.toggle('active');
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-        if (!navToggle.contains(event.target) && !navMenu.contains(event.target)) {
-            navMenu.classList.remove('active');
-        }
-    });
-
-    // Smooth scrolling for nav links
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function (e) {
+    // Enhanced smooth scroll with offset calculation
+    links.forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const target = document.querySelector(targetId);
+            const target = document.querySelector(this.getAttribute('href'));
             
             if (target) {
-                const headerHeight = header.offsetHeight;
-                const targetPosition = target.offsetTop - headerHeight - 20;
-                
-                window.scrollTo({ 
-                    top: targetPosition, 
-                    behavior: 'smooth' 
+                const headerOffset = header.offsetHeight;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
                 });
+
+                // Close mobile menu if open
+                if (navMenu) {
+                    navMenu.classList.remove('active');
+                    menuToggle?.classList.remove('active');
+                }
             }
-            
-            navMenu.classList.remove('active');
         });
     });
 
-    // Hero CTA scroll to contact
-    const heroCta = document.querySelector('.hero-cta');
-    if (heroCta) {
-        heroCta.addEventListener('click', function() {
-            const contactSection = document.getElementById('contact');
-            if (contactSection) {
-                const headerHeight = header.offsetHeight;
-                const targetPosition = contactSection.offsetTop - headerHeight - 20;
+    // Card hover effects
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Contact form handling with enhanced validation and animations
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            // Add loading state with animation
+            submitBtn.innerHTML = '<span class="loading-spinner"></span> Enviando...';
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            
+            // Simulate form submission (replace with actual form submission)
+            setTimeout(() => {
+                submitBtn.innerHTML = '¡Mensaje enviado! <span class="check-mark">✓</span>';
+                submitBtn.classList.remove('loading');
+                submitBtn.classList.add('success');
+                form.reset();
                 
-                window.scrollTo({ 
-                    top: targetPosition, 
-                    behavior: 'smooth' 
-                });
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.classList.remove('success');
+                    submitBtn.disabled = false;
+                }, 2000);
+            }, 1500);
+        });
+    }
+
+    // Mobile menu with enhanced animations
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            
+            // Animate menu items
+            const menuItems = navMenu.querySelectorAll('a');
+            menuItems.forEach((item, index) => {
+                if (navMenu.classList.contains('active')) {
+                    item.style.animation = `fadeInRight 0.5s ease forwards ${index * 0.1}s`;
+                } else {
+                    item.style.animation = '';
+                }
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
             }
         });
     }
 
-    // Intersection Observer for card animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const cardObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animationDelay = Math.random() * 0.3 + 's';
-                entry.target.classList.add('animate-in');
-            }
-        });
-    }, observerOptions);
-
-    // Observe all cards for animation
-    document.querySelectorAll('.value-card, .process-card, .portfolio-card, .service-card').forEach(card => {
-        cardObserver.observe(card);
-    });
-
-    // Contact Form Submission & Validation
-    document.getElementById('contactForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        const messages = {
-            required: "Este campo es requerido.",
-            email: "Por favor ingrese una dirección de email válida.",
-            success: "¡Éxito! Su mensaje ha sido enviado."
-        };
-        
-        let valid = true, msg = "";
-
-        this.querySelectorAll("input, select, textarea").forEach(el => {
-            if (el.required && !el.value.trim()) {
-                valid = false;
-                msg += `${el.previousElementSibling.textContent}: ${messages.required}<br>`;
-            } else if (el.type === "email" && el.value && !el.value.match(/^[^@ ]+@[^@ ]+\.[^@ ]+$/)) {
-                valid = false;
-                msg += `${el.previousElementSibling.textContent}: ${messages.email}<br>`;
-            }
-        });
-
-        const formMsgEl = document.getElementById('formMessage');
-        if (valid) {
-            formMsgEl.innerHTML = messages.success;
-            formMsgEl.className = 'form-message';
-            this.reset();
-            
-            setTimeout(() => {
-                formMsgEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 100);
-        } else {
-            formMsgEl.innerHTML = msg;
-            formMsgEl.className = 'form-message error';
+    // Add parallax effect to hero section
+    const hero = document.querySelector('.hero');
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        if (hero) {
+            hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
         }
-    });
-
-    // Add loading state to form submission
-    const form = document.getElementById('contactForm');
-    const submitBtn = document.querySelector('.form-submit');
-    const originalSubmitText = submitBtn.textContent;
-
-    form.addEventListener('submit', function() {
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Enviando...';
-        
-        setTimeout(() => {
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalSubmitText;
-        }, 2000);
     });
 });

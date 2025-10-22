@@ -6,7 +6,7 @@
     <title>Data desde Cero - Transformando Datos en Ventaja Estratégica</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,81 +14,118 @@
     <header class="header">
         <nav class="container">
             <div class="nav-brand">
-                <h1 class="logo">Data desde Cero</h1>
-                <p class="tagline">Transformando Datos en Ventaja Estratégica</p>
+                <h1>Data desde Cero</h1>
             </div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link">Inicio</a></li>
-                <li><a href="#about" class="nav-link">Nosotros</a></li>
-                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
-                <li><a href="#services" class="nav-link">Servicios</a></li>
-                <li><a href="#contact" class="nav-link">Contacto</a></li>
-            </ul>
-            <div class="nav-actions">
-                <button class="nav-toggle" id="navToggle">
-                    <span></span><span></span><span></span>
-                </button>
+            <div class="nav-links nav-menu">
+                <a href="#home">Inicio</a>
+                <a href="#services">Servicios</a>
+                <a href="#process">Proceso</a>
+                <a href="#contact" class="button-primary">Contacto</a>
             </div>
+            <button class="menu-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+            </button>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span>Transforma tu Negocio con</span><br>
+                <span class="gradient-text">Inteligencia Basada en Datos</span>
+            </h1>
+            <p class="hero-subtitle">
+                Convertimos datos complejos en insights accionables para impulsar tu negocio al siguiente nivel
+            </p>
+            <div class="hero-cta">
+                <a href="#contact" class="button-primary">Inicia tu proyecto</a>
+                <a href="#process" class="button-secondary">Ver proceso</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">50%</span>
+                    <span class="stat-label">Entrega Más Rápida</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">30%</span>
+                    <span class="stat-label">Menor Costo</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Satisfacción</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
         <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Transforma tu Negocio con Inteligencia Basada en Datos</h1>
-                <p class="hero-description">Inteligencia de Negocios y Analítica honesta y basada en valor para empresas en crecimiento. Entregamos resultados medibles con tecnología moderna y metodologías probadas.</p>
-                <button class="hero-cta">Consulta Gratuita</button>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">50%</span>
-                        <span class="stat-label">Entrega Más Rápida</span>
+            <h2 class="section-title">Nuestros <span class="gradient-text">Servicios</span></h2>
+            <div class="services-cards">
+                <div class="service-card">
+                    <div class="card-content">
+                        <h3>Business Intelligence</h3>
+                        <p>Dashboards interactivos y reportes automatizados</p>
+                        <ul>
+                            <li>Análisis en tiempo real</li>
+                            <li>KPIs personalizados</li>
+                            <li>Integración multifuente</li>
+                        </ul>
                     </div>
-                    <div class="stat">
-                        <span class="stat-number">30-50%</span>
-                        <span class="stat-label">Menores Costos</span>
+                    <div class="card-footer">
+                        <span class="duration">6-8 semanas</span>
+                        <a href="#contact" class="learn-more">Más info →</a>
                     </div>
-                    <div class="stat">
-                        <span class="stat-number">6-8</span>
-                        <span class="stat-label">Semanas Duración</span>
+                </div>
+                <div class="service-card">
+                    <div class="card-content">
+                        <h3>Machine Learning</h3>
+                        <p>Modelos predictivos y análisis avanzado</p>
+                        <ul>
+                            <li>Predicción de tendencias</li>
+                            <li>Segmentación de clientes</li>
+                            <li>Optimización de procesos</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <span class="duration">8-12 semanas</span>
+                        <a href="#contact" class="learn-more">Más info →</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="card-content">
+                        <h3>Data Engineering</h3>
+                        <p>Infraestructura y pipelines de datos</p>
+                        <ul>
+                            <li>ETL automatizado</li>
+                            <li>Data warehousing</li>
+                            <li>Calidad de datos</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <span class="duration">4-6 semanas</span>
+                        <a href="#contact" class="learn-more">Más info →</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Us -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">Nuestra Filosofía: Empezar con el PORQUÉ</h2>
-            <p class="section-subtitle">Creemos en entender tu negocio primero, luego entregar valor medible</p>
-            <div class="values-cards">
-                <div class="value-card">
-                    <h3>Enfoque Honesto</h3>
-                    <p>Solo trabajamos donde se puede entregar valor. Si tus datos no están listos, te ayudamos a prepararlos primero.</p>
-                </div>
-                <div class="value-card">
-                    <h3>Simplicidad Primero</h3>
-                    <p>Los problemas complejos requieren soluciones simples. Hacemos que los datos sean accesibles para todos los usuarios de negocio.</p>
-                </div>
-                <div class="value-card">
-                    <h3>Basado en Valor</h3>
-                    <p>Cada proyecto debe entregar ROI claro. Cobramos solo cuando creamos impacto de negocio medible.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process -->
+    <!-- Process Section -->
     <section id="process" class="process">
         <div class="container">
-            <h2 class="section-title">Nuestro Proceso de Entrega de 8 Semanas</h2>
-            <div class="process-cards">
+            <h2 class="section-title">Nuestro <span class="gradient-text">Proceso</span></h2>
+            <div class="process-timeline">
                 <div class="process-card">
                     <div class="process-header">
-                        <h3>Semana 1-2</h3>
-                        <p>Evaluación del Negocio y Acceso a Datos</p>
-                        <button class="expand-btn" aria-label="Expandir contenido">+</button>
+                        <div class="header-content">
+                            <h3>Fase 1: Descubrimiento</h3>
+                            <p>Evaluación del Negocio y Acceso a Datos</p>
+                        </div>
+                        <button class="expand-btn" aria-label="Ver más">+</button>
                     </div>
                     <div class="process-content">
                         <ul>
@@ -101,9 +138,11 @@
                 </div>
                 <div class="process-card">
                     <div class="process-header">
-                        <h3>Semana 3-4</h3>
-                        <p>Análisis Exploratorio de Datos</p>
-                        <button class="expand-btn" aria-label="Expandir contenido">+</button>
+                        <div>
+                            <h3>Fase 2: Análisis</h3>
+                            <p>Análisis Exploratorio de Datos</p>
+                        </div>
+                        <button class="expand-btn" aria-label="Ver más">+</button>
                     </div>
                     <div class="process-content">
                         <ul>
@@ -116,9 +155,11 @@
                 </div>
                 <div class="process-card">
                     <div class="process-header">
-                        <h3>Semana 5-6</h3>
-                        <p>Modelo de Datos y Dashboard MVP</p>
-                        <button class="expand-btn" aria-label="Expandir contenido">+</button>
+                        <div>
+                            <h3>Fase 3: Desarrollo</h3>
+                            <p>Modelo de Datos y Dashboard MVP</p>
+                        </div>
+                        <button class="expand-btn" aria-label="Ver más">+</button>
                     </div>
                     <div class="process-content">
                         <ul>
@@ -131,9 +172,11 @@
                 </div>
                 <div class="process-card">
                     <div class="process-header">
-                        <h3>Semana 7-8</h3>
-                        <p>Pruebas de Usuario y Despliegue</p>
-                        <button class="expand-btn" aria-label="Expandir contenido">+</button>
+                        <div>
+                            <h3>Fase 4: Implementación</h3>
+                            <p>Pruebas y Despliegue</p>
+                        </div>
+                        <button class="expand-btn" aria-label="Ver más">+</button>
                     </div>
                     <div class="process-content">
                         <ul>
@@ -148,140 +191,46 @@
         </div>
     </section>
 
-    <!-- Portfolio -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <h2 class="section-title">Casos de Éxito</h2>
-            <div class="portfolio-cards">
-                <div class="portfolio-card">
-                    <h3>Panel de Análisis de Fitness Personal</h3>
-                    <p class="subtitle">Startup de Salud y Bienestar</p>
-                    <p class="challenge">Seguir métricas de fitness de usuarios y proporcionar insights personalizados para aumentar el engagement</p>
-                    <p class="solution">Dashboard de Apache Superset integrado con APIs de dispositivos wearables</p>
-                    <ul>
-                        <li>40% de aumento en engagement de usuarios</li>
-                        <li>Reportes semanales automatizados</li>
-                        <li>Recomendaciones personalizadas de ejercicios</li>
-                        <li>Seguimiento de salud en tiempo real</li>
-                    </ul>
-                </div>
-                <div class="portfolio-card">
-                    <h3>Análisis de Rendimiento y Retención de RH</h3>
-                    <p class="subtitle">Empresa Tecnológica Mediana</p>
-                    <p class="challenge">Reducir la rotación de empleados y mejorar la gestión del rendimiento</p>
-                    <p class="solution">Modelo de analítica predictiva con dashboard de reportes automatizado</p>
-                    <ul>
-                        <li>25% de reducción en rotación inesperada</li>
-                        <li>Identificación temprana de empleados en riesgo</li>
-                        <li>Evaluaciones de rendimiento basadas en datos</li>
-                        <li>Reportes mensuales de RH automatizados</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title">Nuestras Soluciones</h2>
-            <p class="section-subtitle">Elige la solución adecuada para las necesidades de tu negocio</p>
-            <div class="services-cards">
-                <div class="service-card">
-                    <span class="service-icon">📊</span>
-                    <h3>Inteligencia de Negocios</h3>
-                    <p class="service-duration">6-8 semanas</p>
-                    <p class="service-description">Transforma tus datos en insights accionables con dashboards interactivos</p>
-                    <ul>
-                        <li>Monitoreo de KPIs en tiempo real</li>
-                        <li>Análisis de tendencias históricas</li>
-                        <li>Reportes automatizados</li>
-                        <li>Acceso multi-dispositivo</li>
-                        <li>Configuración de almacén de datos</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <span class="service-icon">🤖</span>
-                    <h3>Modelos Predictivos y de Descubrimiento con IA</h3>
-                    <p class="service-duration">8-12 semanas</p>
-                    <p class="service-description">Aprovecha la IA para predecir tendencias futuras y descubrir patrones ocultos</p>
-                    <ul>
-                        <li>Predicción de comportamiento del cliente</li>
-                        <li>Pronósticos de ventas</li>
-                        <li>Detección de anomalías</li>
-                        <li>Reconocimiento de patrones</li>
-                        <li>Insights automatizados</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <span class="service-icon">⚡</span>
-                    <h3>Automatización de Procesos</h3>
-                    <p class="service-duration">6-10 semanas</p>
-                    <p class="service-description">Automatiza tareas repetitivas y optimiza tus operaciones</p>
-                    <ul>
-                        <li>Automatización de pipelines de datos</li>
-                        <li>Generación de reportes</li>
-                        <li>Sistemas de alertas</li>
-                        <li>Optimización de flujos de trabajo</li>
-                        <li>Integraciones de API</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
+    <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Inicia tu Transformación de Datos</h2>
-            <p class="section-subtitle">Cuéntanos sobre los desafíos de tu negocio y presupuesto</p>
-            <form id="contactForm" class="contact-form">
-                <div class="form-group">
-                    <label for="company_name">Nombre de la Empresa</label>
-                    <input type="text" id="company_name" name="company_name" required>
+            <h2 class="section-title">Inicia tu <span class="gradient-text">Proyecto</span></h2>
+            <form class="contact-form" id="contactForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <input type="text" id="name" required placeholder="Nombre">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" required placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="company" required placeholder="Empresa">
+                    </div>
+                    <div class="form-group">
+                        <select id="company_size" required>
+                            <option value="">Tamaño de empresa</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="project_type" required>
+                            <option value="">Tipo de proyecto</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="budget_range" required>
+                            <option value="">Presupuesto</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="timeline" required>
+                            <option value="">Cronograma</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <textarea id="message" required placeholder="Cuéntanos sobre tu proyecto"></textarea>
+                    </div>
+                    <button type="submit" class="button-primary full-width">Enviar mensaje</button>
                 </div>
-                <div class="form-group">
-                    <label for="contact_person">Persona de Contacto</label>
-                    <input type="text" id="contact_person" name="contact_person" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Dirección de Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Número de Teléfono</label>
-                    <input type="tel" id="phone" name="phone">
-                </div>
-                <div class="form-group">
-                    <label for="company_size">Tamaño de la Empresa</label>
-                    <select id="company_size" name="company_size"></select>
-                </div>
-                <div class="form-group">
-                    <label for="project_type">Tipo de Proyecto</label>
-                    <select id="project_type" name="project_type"></select>
-                </div>
-                <div class="form-group">
-                    <label for="budget_range">Rango de Presupuesto</label>
-                    <select id="budget_range" name="budget_range"></select>
-                </div>
-                <div class="form-group">
-                    <label for="timeline">Cronograma Deseado</label>
-                    <select id="timeline" name="timeline"></select>
-                </div>
-                <div class="form-group">
-                    <label for="current_challenges">Desafíos Actuales del Negocio</label>
-                    <textarea id="current_challenges" name="current_challenges" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="data_sources">Fuentes de Datos Existentes (si las conoces)</label>
-                    <textarea id="data_sources" name="data_sources"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="additional_info">Información Adicional</label>
-                    <textarea id="additional_info" name="additional_info"></textarea>
-                </div>
-                <button type="submit" class="form-submit">Enviar Solicitud de Consulta</button>
-                <div class="form-message" id="formMessage"></div>
             </form>
         </div>
     </section>
@@ -289,8 +238,25 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p class="footer-contact">Contacto: dabdatadrive@gmail.com | Madrid</p>
-            <p class="footer-copyright">© 2025 Data desde Cero. Todos los derechos reservados.</p>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Data desde Cero</h3>
+                    <p>Transformando datos en ventaja competitiva</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Inicio</a>
+                    <a href="#services">Servicios</a>
+                    <a href="#process">Proceso</a>
+                    <a href="#contact">Contacto</a>
+                </div>
+                <div class="footer-contact">
+                    <p>Madrid, España</p>
+                    <p>dabdatadrive@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Data desde Cero. Todos los derechos reservados.</p>
+            </div>
         </div>
     </footer>
 
