@@ -306,6 +306,17 @@ nav.container {
   visibility: visible;
 }
 
+.hero-description {
+    font-size: 1.8rem;
+    color: var(--text-gray);
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 1;
+    visibility: visible;
+}
+
 .hero-cta {
   display: flex;
   justify-content: center;
@@ -586,7 +597,8 @@ section:nth-child(odd) {
 }
 
 .form-group {
-  margin-bottom: 24px;
+  position: relative;
+  margin-bottom: 1.5rem;
 }
 
 .form-group label {
@@ -601,27 +613,69 @@ section:nth-child(odd) {
 .form-group select,
 .form-group textarea {
   width: 100%;
-  padding: 12px 16px;
-  border: 1px solid rgba(26, 35, 126, 0.2);
+  padding: 1rem;
+  background: rgba(10, 25, 47, 0.8);
+  border: 1px solid rgba(57, 255, 20, 0.1);
   border-radius: var(--radius-sm);
-  font-size: 1rem;
-  transition: all var(--transition-medium);
-  background: var(--surface-lighter);
-  color: var(--text-dark);
+  color: var(--text-light);
+  font-family: var(--font-primary);
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--text-dark);
-  background: var(--surface-lighter);
-  box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1);
+.form-group input::placeholder,
+.form-group textarea::placeholder,
+.form-group select:invalid {
+  color: var(--text-gray);
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.form-group select {
+  color: var(--text-light);
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f8f9fc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1em;
+  padding-right: 2.5rem;
+}
+
+.form-group select option {
+  background-color: var(--background-dark);
+  color: var(--text-light);
 }
 
 .form-group textarea {
   min-height: 120px;
   resize: vertical;
+}
+
+.form-group input:invalid,
+.form-group select:invalid,
+.form-group textarea:invalid {
+  border-color: rgba(57, 255, 20, 0.2);
+}
+
+.form-group input:invalid:focus,
+.form-group select:invalid:focus,
+.form-group textarea:invalid:focus {
+  border-color: var(--neon-green);
+}
+
+.form-group::after {
+  content: "Necesitamos esta info :)";
+  position: absolute;
+  bottom: -1.2rem;
+  left: 0;
+  font-size: 0.8rem;
+  color: var(--neon-green);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.form-group input:invalid:not(:placeholder-shown) ~ ::after,
+.form-group select:invalid:not(:placeholder-shown) ~ ::after,
+.form-group textarea:invalid:not(:placeholder-shown) ~ ::after {
+  opacity: 1;
 }
 
 .form-submit {
@@ -804,23 +858,27 @@ html {
 
 .process-header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: flex-start;
-    cursor: pointer;
     padding-bottom: 16px;
 }
 
 .process-header h3 {
-    margin: 0;
     color: var(--text-dark);
-    font-size: 1.4rem;
-    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.process-header h3 span {
+    color: var(--neon-green);
+    display: block;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    margin-left: 1rem;
 }
 
 .process-header p {
-    margin: 4px 0;
-    color: var(--text-medium);
-    font-size: 1.1rem;
+    color: var(--text-dark);
 }
 
 .expand-btn {
@@ -1170,4 +1228,246 @@ textarea:focus-visible {
 .learn-more:hover {
     text-shadow: var(--shadow-neon);
     transform: translateX(5px);
+}
+
+.emphasis {
+    color: var(--neon-green);
+    font-weight: 700;
+}
+
+.philosophy {
+    padding: 6rem 0;
+    background: var(--background-darker);
+}
+
+.philosophy h2.section-title {
+    color: var(--text-light);
+}
+
+.philosophy h2.section-title span,
+.philosophy h2.section-title .gradient-text {
+    color: var(--neon-green);
+}
+
+.values-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.value-card {
+    background: rgba(248, 249, 252, 0.05);
+    padding: 2rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(57, 255, 20, 0.1);
+    transition: all var(--transition-medium);
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-green);
+    box-shadow: var(--shadow-neon);
+}
+
+.value-card h3 {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.value-card p {
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+/* Updated form styles */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(248, 249, 252, 0.05);
+    border: 1px solid rgba(57, 255, 20, 0.1);
+    border-radius: var(--radius-sm);
+    color: var(--text-light);
+    font-family: var(--font-primary);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-gray);
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Process timeline improvements */
+.process-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.process-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background: rgba(248, 249, 252, 0.05);
+    border-radius: var(--radius-md);
+}
+
+.header-content {
+    flex: 1;
+}
+
+.process-header h3 {
+    color: var(--neon-green);
+    margin-bottom: 0.5rem;
+}
+
+/* Updated service card styles */
+.service-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-content {
+    flex: 1;
+}
+
+.card-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(57, 255, 20, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .values-cards {
+        gap: 1.5rem;
+    }
+}
+
+.philosophy .section-title {
+    color: var(--neon-green);
+}
+
+.philosophy .section-title span {
+    color: var(--neon-green);
+}
+
+.service-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.process-header h3 {
+    color: var(--text-dark);
+    font-size: 1.5rem;
+}
+
+.process-header h3 span {
+    color: var(--neon-green);
+}
+
+.contact .section-title {
+    color: var(--neon-green);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(248, 249, 252, 0.05);
+    border: 1px solid rgba(57, 255, 20, 0.1);
+    border-radius: var(--radius-sm);
+    color: var(--text-light);
+    font-family: var(--font-primary);
+    margin-bottom: 1rem;
+}
+
+.form-group select {
+    color: var(--text-light);
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f8f9fc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+    padding-right: 2.5rem;
+}
+
+.form-group select option {
+    background-color: var(--background-dark);
+    color: var(--text-light);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder,
+.form-group select:invalid {
+    color: var(--text-gray);
+}
+
+.form-group select:invalid {
+    color: var(--text-gray);
+}
+
+.form-group input:required:invalid,
+.form-group select:required:invalid,
+.form-group textarea:required:invalid {
+    border-color: rgba(57, 255, 20, 0.2);
+}
+
+.form-group input:required:invalid:focus,
+.form-group select:required:invalid:focus,
+.form-group textarea:required:invalid:focus {
+    border-color: var(--neon-green);
+}
+
+.form-group select option[value=""] {
+    color: var(--text-gray);
+}
+
+/* Add required field indicator in Spanish */
+.form-group input:required:invalid::after,
+.form-group select:required:invalid::after,
+.form-group textarea:required:invalid::after {
+    content: "Necesitamos esta info :)";
+    position: absolute;
+    right: 0;
+    top: 100%;
+    font-size: 0.8rem;
+    color: var(--neon-green);
+}
+
+#project_type option[value="data-engineering"] {
+    color: var(--text-light);
 }
